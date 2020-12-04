@@ -22,28 +22,43 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 # write your update damages function here:
 
 
-def updated_damages(lst):
+def converted_damages(lst):
   updated = []
 
   for i in lst:
     if i == 'Damages not recorded':
       updated.append(i)
-    elif i[-1] == 'M' or i[-1] == 'B':
+    elif i[-1] == 'M':
+        floated = float(i[:-1])
+        updated.append(floated * 1000000)
+    elif i[-1] == 'B':
       floated = float(i[:-1])
-      updated.append(floated)
+      updated.append(floated * 1000000000)
   return updated
 
 
-print(updated_damages(damages))
-
-
-
+updated_damages = converted_damages(damages)
 
 
 # write your construct hurricane dictionary function here:
+def hurricane_dictionary(*args):
+  hurricanes = {}
+  num_hurricanes = len(names)
+  for i in range(num_hurricanes):
+    hurricanes[names[i]] = {
+        "Name": names[i],
+        "Month": months[i],
+        "Year": years[i],
+        "Max Sustained Wind": max_sustained_winds[i],
+        "Area Affected": areas_affected[i],
+        "Damage": updated_damages[i],
+        "Deaths": deaths[i]
+    }
+  return hurricanes
 
 
-
+print(hurricane_dictionary(names, months, years,
+                           max_sustained_winds, areas_affected, updated_damages, deaths))
 
 
 
