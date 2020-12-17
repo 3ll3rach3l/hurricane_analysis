@@ -120,12 +120,18 @@ most_affected = most_affected_area(area_count)
 
 # write your greatest number of deaths function here:
 
+def greatest_num_of_deaths(hurricanes):
+  body_count = 0
+  baddest_cane = ''
+  for hurricane in hurricanes:
+    death = hurricanes[hurricane]['Deaths']
+    if death > body_count:
+      body_count = death
+      baddest_cane = hurricane
+  return baddest_cane, body_count
 
 
-
-
-
-
+deadliest_cane = greatest_num_of_deaths(atlantic_hurricanes)
 # write your catgeorize by mortality function here:
 
 
