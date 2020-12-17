@@ -86,19 +86,36 @@ hurricanes_by_year = year_to_key(atlantic_hurricanes)
 
 
 # write your count affected areas function here:
+#will look at hurricanes[areas_affected]
+#create a new dict
+# the value of each key will increase +1
+def count_affected_areas(hurricane_dict):
+  affected_area_count = {}
+  for hurricane in hurricane_dict:
+    affected = hurricane_dict[hurricane]['Area Affected']
+    for area in affected:
+      if area not in affected_area_count:
+        affected_area_count[area] = 1
+      else:
+        affected_area_count[area] += 1
+  return affected_area_count
 
-
-
-
-
-
+       
+area_count = count_affected_areas(atlantic_hurricanes)
 
 # write your find most affected area function here:
 
+def most_affected_area(count_dict):
+    max_count = 0
+    max_area = ''
+    for key, value in count_dict.items():
+        if value > max_count:
+            max_count = value
+            max_area = key
+    return max_area, max_count
 
 
-
-
+most_affected = most_affected_area(area_count)
 
 
 # write your greatest number of deaths function here:
