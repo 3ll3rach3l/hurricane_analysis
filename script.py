@@ -157,11 +157,23 @@ def categorize_by_mortality(hurricanes):
 hurricanes_by_mortality = categorize_by_mortality(atlantic_hurricanes)
 
 
-
-
 # write your greatest damage function here:
 
+def greatest_damage(hurricanes):
+  max_cost = 0
+  which_cane = ''
+  for hurricane in hurricanes:
+    damage = hurricanes[hurricane]['Damage']
+    #print('hurricane', hurricane, '->', damage)
+    if damage == 'Damages not recorded':
+      continue
+    elif damage > max_cost:
+      max_cost = damage
+      which_cane = hurricane
+  return which_cane, max_cost
 
+
+max_damage_cost = greatest_damage(atlantic_hurricanes)
 
 
 
