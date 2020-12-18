@@ -133,9 +133,28 @@ def greatest_num_of_deaths(hurricanes):
 
 deadliest_cane = greatest_num_of_deaths(atlantic_hurricanes)
 # write your catgeorize by mortality function here:
+  #mortality_dict[rating] = [{hurricanes in this rating key}]
+def categorize_by_mortality(hurricanes):
+  mortality_dict = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+  for hurricane in hurricanes:
+    death = hurricanes[hurricane]['Deaths']
+    #print('hurricane', hurricane, '->', death, 'deaths')
+    if death == 0:
+      mortality_dict[0] = {hurricane}
+    elif death >= 1 and death <= 100:
+      mortality_dict[1].append({hurricane})
+    elif death >= 101 and death <= 500:
+      mortality_dict[2].append({hurricane})
+    elif death >= 501 and death <= 1000:
+      mortality_dict[3].append({hurricane})
+    elif death >= 1001 and death <= 10000:
+      mortality_dict[4].append({hurricane})
+    else:
+      mortality_dict[5].append({hurricane})
+  return mortality_dict
 
 
-
+hurricanes_by_mortality = categorize_by_mortality(atlantic_hurricanes)
 
 
 
