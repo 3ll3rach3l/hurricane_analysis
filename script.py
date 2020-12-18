@@ -140,7 +140,7 @@ def categorize_by_mortality(hurricanes):
     death = hurricanes[hurricane]['Deaths']
     #print('hurricane', hurricane, '->', death, 'deaths')
     if death == 0:
-      mortality_dict[0] = {hurricane}
+      mortality_dict[0].append({hurricane})
     elif death >= 1 and death <= 100:
       mortality_dict[1].append({hurricane})
     elif death >= 101 and death <= 500:
@@ -175,8 +175,27 @@ def greatest_damage(hurricanes):
 
 max_damage_cost = greatest_damage(atlantic_hurricanes)
 
-
-
-
-
 # write your catgeorize by damage function here:
+
+
+def categorize_by_damage(hurricanes):
+  damage_dict = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+  for hurricane in hurricanes:
+    damages = hurricanes[hurricane]['Damage']
+    if damages == 0 or damages == 'Damages not recorded':
+      damage_dict[0].append({hurricane})
+    elif damages >= 1 and damages <= 100000000:
+      damage_dict[1].append({hurricane})
+    elif damages >= 100000001 and damages <= 1000000000:
+      damage_dict[2].append({hurricane})
+    elif damages >= 1000000001 and damages <= 10000000000:
+      damage_dict[3].append({hurricane})
+    elif damages >= 10000000001 and damages <= 50000000000:
+      damage_dict[4].append({hurricane})
+    else:
+      damage_dict[5].append({hurricane})
+  return damage_dict
+
+
+hurricanes_by_damage = categorize_by_damage(atlantic_hurricanes)
+print(hurricanes_by_damage)
